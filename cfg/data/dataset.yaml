@@ -1,0 +1,82 @@
+# Ultralytics YOLO 🚀, AGPL-3.0 license
+# COCO 2017 dataset https://cocodataset.org by Microsoft
+# Documentation: https://docs.ultralytics.com/datasets/detect/coco/
+# Example usage: yolo train data=coco.yaml
+# parent
+# ├── ultralytics
+# └── datasets
+#     └── coco  ← downloads here (20.1 GB)
+
+# Train/val/test sets as 1) dir: path/to/imgs, 2) file: path/to/imgs.txt, or 3) list: [path/to/imgs1, path/to/imgs2, ..]
+path: D:/project/Yolov8-Detect/dataset/ # dataset root dir
+train: images/train # train images (relative to 'path') 118287 images
+val: images/val # val images (relative to 'path') 5000 images
+test: # 20288 of 40670 images, submit to https://competitions.codalab.org/competitions/20794
+
+# Classes
+names:
+  0: 1paper
+  1: 1dailyplastic
+  2: 1tyre
+  3: 1package
+  4: 1plasticbottle
+  5: 1socket
+  6: 1electricwire
+  7: 1fabric
+  8: 1glasscup
+  9: 1toy
+  10: 1wood
+  11: 1can
+  12: 1phone
+  13: 1glassbottle
+  14: 1hanger
+  15: 1plug
+  16: 1metalbasin
+  17: 1shoe
+  18: 1coin
+  19: 1paperboard
+  20: 1plasticcup
+  21: 1electricapplianceA
+  22: 1carton
+  23: 1plushtoys
+  24: 1electricapplianceB
+  25: 1book
+  26: 1metal
+  27: 1boxruler
+  28: 1plasticbasin
+  29: 1metalcup
+  30: 1usbdisk
+  31: 1desklamp
+  32: 1electricapplianceC
+  33: 1monitor
+  34: 1jewelry
+  35: 1scissor
+  36: 1keyboard
+  37: 1watch
+  38: 1mouse
+  39: 1knife
+  40: 1headset
+  41: 1toycar
+  42: 1glass
+  43: 1key
+  44: 1laptop
+  45: 1humanoidtoys
+  46: 1froth
+
+
+# Download script/URL (optional)
+#download: |
+#  from ultralytics.utils.downloads import download
+#  from pathlib import Path
+#
+#  # Download labels
+#  segments = True  # segment or box labels
+#  dir = Path(yaml['path'])  # dataset root dir
+#  url = 'https://github.com/ultralytics/yolov5/releases/download/v1.0/'
+#  urls = [url + ('coco2017labels-segments.zip' if segments else 'coco2017labels.zip')]  # labels
+#  download(urls, dir=dir.parent)
+#  # Download data
+#  urls = ['http://images.cocodataset.org/zips/train2017.zip',  # 19G, 118k images
+#          'http://images.cocodataset.org/zips/val2017.zip',  # 1G, 5k images
+#          'http://images.cocodataset.org/zips/test2017.zip']  # 7G, 41k images (optional)
+#  download(urls, dir=dir / 'images', threads=3)
