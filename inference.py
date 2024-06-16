@@ -39,11 +39,12 @@ def predict_camera(model):
 
 def predict_image(model, img_path):
     img = cv2.imread(img_path)
-    results = model.predict(source=img, conf=0.4)  # 对当前帧进行目标检测并显示结果，返回置信度大于conf的类别
+    results = model.predict(source=img, conf=0.4, device='0', verbose=False)  # 对当前帧进行目标检测并显示结果，返回置信度大于conf的类别
 
     annotated_frame = results[0].plot()  # 注释后的可视化图片，需要的话可以直接返回
 
-    print("bbox info" + "*" * 80)
+    print("bbox info")
+    print("*" * 80)
     orig_img = results[0].orig_img  # 原始图像
     detect_info = results[0].boxes  # 检测结果，包括类别索引，包围框的信息等
     bboxes_data = detect_info.data  # 包围框信息
