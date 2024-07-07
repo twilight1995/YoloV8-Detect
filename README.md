@@ -11,6 +11,8 @@ path：需要写绝对路径
 train：相对路径
 val: 相对路径\
 ![img.png](picture/img1.png)
+
+## 模型训练推理
 ### train.py
 * 训练yolov8，需要配置模型加载路径，数据的配置文件路径
 
