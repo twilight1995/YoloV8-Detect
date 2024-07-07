@@ -23,3 +23,9 @@ model = YOLO("weights/best.pt")  # 模型加载
 results = model.predict(source=img, conf=0.4)  # 对当前帧进行目标检测并显示结果，返回置信度大于conf的类别
 ```
 核心内容就这部分，img可以用base64的方式传输，在之前解码，results的返回内容在inference里有写，可以看需要返回
+
+
+## 链接postgres数据库
+### utils/ConnectSQL.py
+* 测试结果，在数据库中创建student表
+![img.png](picture/img2.png)

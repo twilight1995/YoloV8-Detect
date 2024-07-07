@@ -12,7 +12,8 @@ def predict_camera(model):
         success, frame = cap.read()  # 读取摄像头的一帧图像
 
         if success:
-            results = model.predict(source=frame, conf=0.4)  # 对当前帧进行目标检测并显示结果，返回置信度大于conf的类别
+            # 对当前帧进行目标检测并显示结果，返回置信度大于conf的类别，verbose控制是否打印信息
+            results = model.predict(source=frame, conf=0.4, verbose=False)
 
         annotated_frame = results[0].plot()
         # 中间放自己的显示程序
@@ -39,7 +40,8 @@ def predict_camera(model):
 
 def predict_image(model, img_path):
     img = cv2.imread(img_path)
-    results = model.predict(source=img, conf=0.4, device='0', verbose=False)  # 对当前帧进行目标检测并显示结果，返回置信度大于conf的类别
+    # 对当前帧进行目标检测并显示结果，返回置信度大于conf的类别，verbose控制是否打印信息
+    results = model.predict(source=img, conf=0.4, device='0', verbose=False)
 
     annotated_frame = results[0].plot()  # 注释后的可视化图片，需要的话可以直接返回
 
