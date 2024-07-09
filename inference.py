@@ -1,3 +1,5 @@
+import time
+
 import cv2
 from ultralytics import YOLO
 from cv2 import getTickCount, getTickFrequency
@@ -41,7 +43,7 @@ def predict_camera(model):
 def predict_image(model, img_path):
     img = cv2.imread(img_path)
     # 对当前帧进行目标检测并显示结果，返回置信度大于conf的类别，verbose控制是否打印信息
-    results = model.predict(source=img, conf=0.4, device='0', verbose=False)
+    results = model.predict(source=img, conf=0.4, device='cpu', verbose=False)
 
     annotated_frame = results[0].plot()  # 注释后的可视化图片，需要的话可以直接返回
 
@@ -55,14 +57,19 @@ def predict_image(model, img_path):
         # 每个data输出6个数，前4个是bbox，第5个是置信度，第6个是类别索引，类别信息再dataset.yaml中
         print(data.cpu().detach().numpy())
 
-    cv2.imshow('img', annotated_frame)
-    cv2.waitKey(0)
+    return annotated_frame
 
 
 if __name__ == '__main__':
+    start_time = time.time()
     # 加载 YOLOv8 模型
     model = YOLO("weights/best.pt")  # 模型加载路径
+    print(f"time cost: {time.time() - start_time}")
     img_path = "./data/test1.jpg"
-    predict_image(model, img_path)
-    # predict_camera(model)
+    for i in range(100):
+        annotated_frame = predict_image(model, img_path)
+        print(f"time cost: {time.time() - start_time}")
+        cv2.imshow('img', annotated_frame)
+        cv2.waitKey(0)
+        start_time = time.time()
 
